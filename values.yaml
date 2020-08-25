@@ -1417,7 +1417,7 @@ prometheus:
     loadBalancerSourceRanges: []
     ## Service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
 
     sessionAffinity: ""
 
@@ -1872,7 +1872,8 @@ prometheus:
     - job_name: 'pushgateway'
     honor_labels: true
     static_configs:
-      - targets: ['pushgateway-prometheus-pushgateway.default.svc.cluster.local:9091']
+      - targets: 'pushgateway-prometheus-pushgateway.default.svc.cluster.local:9091'
+  
     # - job_name: kube-etcd
     #   kubernetes_sd_configs:
     #     - role: node

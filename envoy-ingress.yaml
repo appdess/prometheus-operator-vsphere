@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: envoy
+  namespace: tanzu-system-ingress
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
+spec:
+  ports:
+  - port: 80
+    name: http
+    protocol: TCP
+  - port: 443
+    name: https
+    protocol: TCP
+  selector:
+    app: envoy
+  type: NodePort

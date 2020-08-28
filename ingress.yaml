@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus
+  namespace: default
+spec:
+  rules:
+  - host: alertmanager.set.local
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-prometheus-oper-alertmanager
+          servicePort: 9093
+  - host: grafana.set.local
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-grafana
+          servicePort: 3000
+  - host: prometheus.set.local
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-prometheus-oper-prometheus
+          servicePort: 9090"
